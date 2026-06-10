@@ -52,6 +52,7 @@ export default function AdminPage() {
 
       setMessage("✅ Product created successfully!");
     } catch (err) {
+      console.log("print err");
       setMessage("❌ Something went wrong");
     } finally {
       setLoading(false);
