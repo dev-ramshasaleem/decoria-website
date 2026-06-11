@@ -3,12 +3,12 @@ import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import Navbar from "../components/navbar";
 
-export default function Home() {
+export default async function Home() {
   return (
     <div>
       <main>
         <Navbar />
-
+        {/* Hero Section */}
         <div className=" relative w-full h-[800px]">
           <Image
             src="/background.png"
