@@ -14,4 +14,15 @@ model Product {
   price       Float
   imageUrl    String
   createdAt   DateTime @default(now())
+
+  cartItems CartItem[]
+}
+
+model CartItem {
+  id        String   @id @default(cuid())
+  quantity  Int      @default(1)
+  userId    String
+  productId String
+  product   Product  @relation(fields: [productId], references: [id])
+  createdAt DateTime @default(now())
 }

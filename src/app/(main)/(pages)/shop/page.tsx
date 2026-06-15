@@ -1,13 +1,11 @@
 import { Button } from "@/components/ui/button";
 import { getProducts } from "@/lib/products";
+import AddToCartButton from "@/src/components/add-to-cart-button";
 import Image from "next/image";
-import React from "react";
 
 export default async function ShopPage() {
   const products = await getProducts();
-  const handleSubmit = () => {
-    console.log("Added to Cart");
-  };
+
   return (
     <div className="px-4 pt-8">
       <h2 className="text-3xl font-bold text-center mb-6 text-stone-800">
@@ -85,8 +83,7 @@ export default async function ShopPage() {
             <h3 className="mt-2 ">{product.description}</h3>
             <p>$ {product.price}</p>
             <div>
-              <Button>Add to Cart</Button>
-
+              <AddToCartButton productId={product.id} />
               <Button>Add to Favorite</Button>
             </div>
           </div>
