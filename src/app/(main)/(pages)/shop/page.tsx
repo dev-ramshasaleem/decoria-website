@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { getProducts } from "@/lib/products";
 import AddToCartButton from "@/src/components/add-to-cart-button";
+import AddToFavorite from "@/src/components/add-to-favorite";
 import Image from "next/image";
 
 export default async function ShopPage() {
@@ -84,7 +85,7 @@ export default async function ShopPage() {
             <p>$ {product.price}</p>
             <div>
               <AddToCartButton productId={product.id} />
-              <Button>Add to Favorite</Button>
+              <AddToFavorite productId={product.id} />
             </div>
           </div>
         ))}

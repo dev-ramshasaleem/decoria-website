@@ -2,13 +2,13 @@
 
 import { Button } from "@/components/ui/button";
 
-export default function AddToCartButton({ productId }: { productId: String }) {
+export default function AddToCartButton({ productId }: { productId: string }) {
   const addToCart = async () => {
     try {
       const res = await fetch("/api/cart", {
         method: "POST",
         headers: {
-          "content-Type": "application/json",
+          "Content-Type": "application/json",
         },
         body: JSON.stringify({ productId }),
       });
