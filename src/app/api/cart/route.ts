@@ -31,7 +31,7 @@ export async function POST(req: Request){
       });
     }
 
-    return NextResponse.json({ success: true });
+    return NextResponse.json({ isAdd: true });
   }
 
   
@@ -61,5 +61,5 @@ export async function POST(req: Request){
     }
   }
 
-  return NextResponse.json({ success: true });
+  return NextResponse.json({ isAdd: false });
 }
