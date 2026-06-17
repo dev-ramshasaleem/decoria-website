@@ -30,9 +30,9 @@ export default function CheckoutPge() {
       });
 
       const data = await res.json();
-      if (data.success) {
-        router.push(`/?orderSuccess=1`);
-      }
+      //   if (data.success) {
+      //     router.push(`/?orderSuccess=1`);
+      //   }
 
       if (data.success) {
         router.push(`/order-success?orderId=${data.orderId}`);
@@ -46,7 +46,6 @@ export default function CheckoutPge() {
     <div className="max-w-md mx-auto p-6 space-y-5">
       <h1 className="text-2xl font-bold">Checkout</h1>
 
-      {/* USER INFO */}
       <input
         placeholder="Full Name"
         className="border p-2 w-full"
@@ -75,7 +74,6 @@ export default function CheckoutPge() {
         onChange={(e) => setAddress(e.target.value)}
       />
 
-      {/* PAYMENT METHOD (COD ONLY) */}
       <div className="border p-3 rounded-md space-y-2">
         <h2 className="font-semibold">Payment Method</h2>
 
@@ -92,11 +90,14 @@ export default function CheckoutPge() {
           You will pay when your order is delivered.
         </p>
       </div>
-      <Link href="/">
+      {/* <Link href="/">
         <Button onClick={handleSubmit} className="w-full">
           Confirm Order
         </Button>
-      </Link>
+      </Link> */}
+      <Button onClick={handleSubmit} className="w-full">
+        Confirm Order
+      </Button>
     </div>
   );
 }

@@ -50,6 +50,7 @@ export async function POST(req: Request) {
         sum + item.product.price * item.quantity,
       0
     );
+    
 
     const order = await prisma.order.create({
       data: {
