@@ -17,6 +17,7 @@ model Product {
 
   cartItems CartItem[]
   heartItems HeartItem[]
+  
 }
 
 model CartItem {
@@ -34,4 +35,33 @@ model HeartItem {
   productId String
   product   Product  @relation(fields: [productId], references: [id])
   createdAt DateTime @default(now())
+}
+
+model Order{
+  id          String      @id @default(cuid())
+  userId      String    
+
+  name      String
+  email     String
+  phone     String
+  address   String
+
+
+  total       Float       
+  status      String      @default("PENDING")
+  
+  createdAt   DateTime    @default(now())
+
+orderItems OrderItem[]
+
+}
+
+model OrderItem {
+  id                  String      @id @default(cuid())
+  orderId             String
+  productId           String
+  quantity            Int
+  price               Float
+  order               Order       @relation(fields: [orderId], references: [id])
+  createdAt           DateTime    @default(now())
 }
