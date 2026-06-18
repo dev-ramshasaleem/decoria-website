@@ -90,11 +90,7 @@ export default function CheckoutPge() {
           You will pay when your order is delivered.
         </p>
       </div>
-      {/* <Link href="/">
-        <Button onClick={handleSubmit} className="w-full">
-          Confirm Order
-        </Button>
-      </Link> */}
+
       <Button onClick={handleSubmit} className="w-full">
         Confirm Order
       </Button>

@@ -2,8 +2,14 @@
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
 
-export default function AddToFavorite({ productId }: { productId: string }) {
-  const [isFavorite, setIsFavorite] = useState<boolean | null>(null);
+export default function AddToFavorite({
+  productId,
+  initialFavorite,
+}: {
+  productId: string;
+  initialFavorite: boolean;
+}) {
+  const [isFavorite, setIsFavorite] = useState(initialFavorite);
   const [loading, setLoading] = useState(false);
   const addToFavorite = async () => {
     try {

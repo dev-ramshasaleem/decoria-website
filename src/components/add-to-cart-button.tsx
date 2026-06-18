@@ -3,8 +3,14 @@
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
 
-export default function AddToCartButton({ productId }: { productId: string }) {
-  const [isAdd, setIsAdd] = useState<boolean | null>(null);
+export default function AddToCartButton({
+  productId,
+  initialAdded,
+}: {
+  productId: string;
+  initialAdded: boolean;
+}) {
+  const [isAdd, setIsAdd] = useState(initialAdded);
   const [loading, setLoading] = useState(false);
   const addToCart = async () => {
     try {

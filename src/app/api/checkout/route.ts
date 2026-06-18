@@ -45,11 +45,11 @@ export async function POST(req: Request) {
       );
     }
 
-    const total = cartItems.reduce(
+    const total = Number(cartItems.reduce(
       (sum, item) =>
         sum + item.product.price * item.quantity,
       0
-    );
+    ).toFixed(2));
     
 
     const order = await prisma.order.create({
