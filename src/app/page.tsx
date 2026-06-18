@@ -9,9 +9,9 @@ export default async function Home() {
       <main>
         <Navbar />
         {/* Hero Section */}
-        <div className=" relative w-full h-[800px]">
+        <div className=" relative w-full h-[1000px]">
           <Image
-            src="/background.png"
+            src="/back.png"
             fill
             alt="background_image"
             className="object-cover"
@@ -30,14 +30,14 @@ export default async function Home() {
             <div className="flex gap-4 mt-6">
               <Button
                 variant="outline"
-                className="w-20 h-10 text-white border-white bg-black/30 hover:bg-black/50"
+                className="w-20 h-10 text-white border-white bg-black/30 hover:bg-black/10"
               >
                 <Link href="/">Home</Link>
               </Button>
 
               <Button
                 variant="outline"
-                className="w-20 h-10 text-white border-white bg-black/30 hover:bg-black/50"
+                className="w-20 h-10 text-white border-white bg-black/30 hover:bg-black/10"
               >
                 <Link href="/shop">Shop</Link>
               </Button>
