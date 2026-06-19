@@ -30,10 +30,10 @@ export default async function ShopPage() {
   return (
     <div className="px-4 pt-8">
       <h2 className="text-3xl font-bold text-center mb-6 text-stone-800">
-        Shop Our Categories
+        Shop Our Products
       </h2>
 
-      <div className="flex flex-wrap justify-center gap-6">
+      {/* <div className="flex flex-wrap justify-center gap-6">
         <div className="rounded-full overflow-hidden shadow-lg border-2 w-20 h-20">
           <Image
             src="/wall-art.png"
@@ -84,7 +84,7 @@ export default async function ShopPage() {
             alt="storage-box"
           />
         </div>
-      </div>
+      </div> */}
       <br />
 
       <div className="grid grid-cols-2 md:grid-cols-4 gap-6">

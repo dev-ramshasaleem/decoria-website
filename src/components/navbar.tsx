@@ -5,14 +5,34 @@ import { Search } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
-type Props = {};
+import { useRouter } from "next/navigation";
 
-const Navbar = (props: Props) => {
+const Navbar = () => {
+  const router = useRouter();
   const [query, setQuery] = useState("");
   const { isSignedIn } = useUser();
+  const [suggestions, setSuggestions] = useState<any[]>([]);
+  const [loading, setLoading] = useState(false);
+
+  const fetchSuggestions = async (value: string) => {
+    if (!value.trim()) {
+      setSuggestions([]);
+      return;
+    }
+
+    setLoading(true);
+
+    const res = await fetch(`/api/search?q=${value}`);
+    const data = await res.json();
+
+    setSuggestions(data);
+    setLoading(false);
+  };
 
   const handleSubmit = () => {
-    console.log("Searching for:", query);
+    if (!query.trim()) return;
+
+    router.push(`/shop?search=${encodeURIComponent(query)}`);
   };
   return (
     <header className=" top-0 left-0 right-0 flex items-center justify-between border-b text-stone-700 bg-white-500 border-stone-600 px-4 py-2">
@@ -24,15 +44,38 @@ const Navbar = (props: Props) => {
         <Input
           type="text"
           value={query}
-          onChange={(e) => setQuery(e.target.value)}
+          onChange={(e) => {
+            const value = e.target.value;
+            setQuery(value);
+            fetchSuggestions(value);
+          }}
           onKeyDown={(e) => {
             if (e.key === "Enter") {
-              handleSubmit();
+              router.push(`/shop?search=${query}`);
+              setSuggestions([]);
             }
           }}
           placeholder="Search products..."
-          className="w-150 px-4 py-2 border border-black/50 text-black rounded-lg focus:ring-2 focus:ring-black/400"
+          className="w-150 px-4 py-2 border border-black/50 text-black rounded-lg"
         />
+
+        {suggestions.length > 0 && (
+          <div className="absolute z-50 mt-2 w-full bg-white border rounded-lg shadow-lg">
+            {suggestions.map((item) => (
+              <div
+                key={item.id}
+                onClick={() => {
+                  router.push(`/shop?search=${item.name}`);
+                  setQuery("");
+                  setSuggestions([]);
+                }}
+                className="px-4 py-2 hover:bg-gray-100 cursor-pointer"
+              >
+                {item.name}
+              </div>
+            ))}
+          </div>
+        )}
         <Search
           className="absolute right-3 top-1/2 -translate-y-1/2 text-stone-900"
           size={18}
