@@ -2,6 +2,7 @@ import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import Navbar from "../components/navbar";
+import { ModeToggle } from "../components/mode-toggle";
 
 export default async function Home() {
   return (
@@ -18,6 +19,9 @@ export default async function Home() {
           />
           {/* overlay content */}
           <div className="absolute inset-0 flex flex-col items-center justify-center text-center bg-black/40 px-4">
+            {/* <div className="fixed absolute top-15 right-4 ">
+              <ModeToggle />
+            </div> */}
             <h1 className="text-white text-5xl md:text-6xl font-bold">
               Design Your Space, Define Your Story
             </h1>
