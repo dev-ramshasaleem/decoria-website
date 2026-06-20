@@ -31,7 +31,7 @@ Follow these steps to run the project locally:
 
 ## Clone the repository:
 ```bash
-git clone https://github.com/ramshasaleem2/ecommerce-website
+git clone https://github.com/dev-ramshasaleem/decoria-website
 ```
 ## Navigate to the project folder:
 ```bash
