@@ -64,7 +64,7 @@ export default async function HeartPage() {
                     </p>
                   </div>
                   <div className="flex">
-                    <AddToCartButton productId={item.id} />
+                    <AddToCartButton productId={item.id} initialAdded={true} />
                   </div>
                 </div>
               ))}
