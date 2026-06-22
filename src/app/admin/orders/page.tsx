@@ -3,6 +3,11 @@ import { auth } from "@clerk/nextjs/server";
 
 export default async function OrdersPage() {
   const { userId } = await auth();
+
+  if (!userId) {
+    return <div>Unauthorized</div>;
+  }
+
   const orders = await prisma.order.findMany({
     orderBy: {
       createdAt: "desc",
@@ -12,19 +17,16 @@ export default async function OrdersPage() {
     },
   });
 
-  if (!userId) {
-    return <div>Unauthorized</div>;
-  }
-
   return (
     <div>
       <h1 className="text-xl font-bold">All Orders</h1>
+
       <div className="mt-4 space-y-4">
         {orders.map((order) => (
           <div key={order.id} className="border p-4 rounded">
             <p>Order ID: {order.id}</p>
             <p>Status: {order.status}</p>
-            <p>total:{order.total}</p>
+            <p>Total: {order.total}</p>
 
             <div className="mt-2">
               {order.orderItems.map((item) => (

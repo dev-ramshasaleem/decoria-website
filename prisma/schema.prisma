@@ -16,6 +16,7 @@ model Product {
 
   cartItems CartItem[]
   heartItems HeartItem[]
+  orderItems OrderItem[]
   
 }
 
@@ -59,6 +60,7 @@ model OrderItem {
   id                  String      @id @default(cuid())
   orderId             String
   productId           String
+  product             Product  @relation(fields: [productId], references: [id])
   quantity            Int
   price               Float
   order               Order       @relation(fields: [orderId], references: [id])
