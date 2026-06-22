@@ -25,7 +25,9 @@ model CartItem {
   quantity  Int      @default(1)
   userId    String
   productId String
+
   product   Product  @relation(fields: [productId], references: [id])
+
   createdAt DateTime @default(now())
 }
 
@@ -33,36 +35,42 @@ model HeartItem {
   id        String   @id @default(cuid())
   userId    String
   productId String
+
   product   Product  @relation(fields: [productId], references: [id])
+
   createdAt DateTime @default(now())
 }
 
 model Order{
-  id          String      @id @default(cuid())
-  userId      String    
+   id        String   @id @default(cuid())
+  userId    String
 
   name      String
   email     String
   phone     String
   address   String
 
+  total     Float
+  status    String   @default("PENDING")
 
-  total       Float       
-  status      String      @default("PENDING")
-  
-  createdAt   DateTime    @default(now())
+  orderItems OrderItem[]
 
-orderItems OrderItem[]
+  createdAt DateTime @default(now())
 
 }
 
 model OrderItem {
-  id                  String      @id @default(cuid())
-  orderId             String
-  productId           String
-  product             Product  @relation(fields: [productId], references: [id])
-  quantity            Int
-  price               Float
-  order               Order       @relation(fields: [orderId], references: [id])
-  createdAt           DateTime    @default(now())
+  id        String   @id @default(cuid())
+
+  orderId   String
+  productId String
+
+  quantity  Int
+  price     Float
+
+  order     Order    @relation(fields: [orderId], references: [id])
+  product   Product  @relation(fields: [productId], references: [id])
+
+  createdAt DateTime @default(now())
+
 }

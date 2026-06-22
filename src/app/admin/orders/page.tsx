@@ -9,34 +9,56 @@ export default async function OrdersPage() {
   }
 
   const orders = await prisma.order.findMany({
+    where: {
+      userId: userId, // 🔥 IMPORTANT FIX
+    },
     orderBy: {
       createdAt: "desc",
     },
     include: {
-      orderItems: true,
+      orderItems: {
+        include: {
+          product: true,
+        },
+      },
     },
   });
 
   return (
-    <div>
-      <h1 className="text-xl font-bold">All Orders</h1>
+    <div className="p-6">
+      <h1 className="text-2xl font-bold">My Orders</h1>
 
-      <div className="mt-4 space-y-4">
-        {orders.map((order) => (
-          <div key={order.id} className="border p-4 rounded">
-            <p>Order ID: {order.id}</p>
-            <p>Status: {order.status}</p>
-            <p>Total: {order.total}</p>
+      <div className="mt-6 space-y-4">
+        {orders.length === 0 ? (
+          <p>No orders found.</p>
+        ) : (
+          orders.map((order) => (
+            <div key={order.id} className="border rounded-lg p-4">
+              {/* Order header */}
+              <div className="flex justify-between">
+                <p className="font-semibold">Order ID: {order.id}</p>
+                <span className="text-sm px-2 py-1 rounded bg-gray-200">
+                  {order.status}
+                </span>
+              </div>
 
-            <div className="mt-2">
-              {order.orderItems.map((item) => (
-                <div key={item.id}>
-                  Product: {item.productId} | Qty: {item.quantity}
-                </div>
-              ))}
+              <p className="text-sm mt-1 text-gray-600">
+                Placed on: {new Date(order.createdAt).toLocaleDateString()}
+              </p>
+
+              <p className="mt-2 font-medium">Total: ${order.total}</p>
+
+              <div className="mt-4 space-y-2">
+                {order.orderItems.map((item) => (
+                  <div key={item.id}>
+                    Products ={item.product?.name ?? "Deleted Product"} | Qty:{" "}
+                    {item.quantity}
+                  </div>
+                ))}
+              </div>
             </div>
-          </div>
-        ))}
+          ))
+        )}
       </div>
     </div>
   );
