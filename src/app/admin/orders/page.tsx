@@ -37,7 +37,7 @@ export default async function OrdersPage() {
               {/* Order header */}
               <div className="flex justify-between">
                 <p className="font-semibold">Order ID: {order.id}</p>
-                <span className="text-sm px-2 py-1 rounded bg-gray-200">
+                <span className="text-sm px-2 py-1 rounded bg-gray-200 text-black">
                   {order.status}
                 </span>
               </div>
