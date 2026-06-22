@@ -61,7 +61,7 @@ export default function AdminPage() {
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-100 p-6">
-      <div className="w-full max-w-xl bg-white shadow-lg rounded-2xl p-6">
+      <div className="w-full max-w-xl bg-white text-black shadow-lg rounded-2xl p-6">
         <h1 className="text-2xl font-bold mb-6">Create Product</h1>
 
         <form onSubmit={handleSubmit} className="space-y-4">

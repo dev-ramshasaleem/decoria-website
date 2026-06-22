@@ -35,7 +35,7 @@ const Navbar = () => {
     router.push(`/shop?search=${encodeURIComponent(query)}`);
   };
   return (
-    <header className=" top-0 left-0 right-0 flex items-center justify-between border-b text-stone-700 bg-white-500 border-stone-600 px-4 py-2">
+    <header className=" top-0 left-0 right-0 flex items-center justify-between border-b text-stone-700  bg-white-500 border-stone-600 px-4 py-2">
       <Link href="/">
         <p className="text-3xl font-bold text-black-700">D E C O R I A</p>
       </Link>
