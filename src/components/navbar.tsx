@@ -35,7 +35,7 @@ const Navbar = () => {
     router.push(`/shop?search=${encodeURIComponent(query)}`);
   };
   return (
-    <header className=" top-0 left-0 right-0 flex items-center justify-between border-b text-stone-700  bg-white-500 border-stone-600 px-4 py-2">
+    <header className=" top-0 left-0 right-0 flex items-center justify-between border-b dark:text-white text-stone-700  bg-white-500 border-stone-600 px-4 py-2">
       <Link href="/">
         <p className="text-3xl font-bold text-black-700">D E C O R I A</p>
       </Link>
@@ -69,7 +69,7 @@ const Navbar = () => {
                   setQuery("");
                   setSuggestions([]);
                 }}
-                className="px-4 py-2 hover:bg-gray-100 cursor-pointer"
+                className="px-4 py-2 hover:bg-gray-100 cursor-pointer dark:text-white"
               >
                 {item.name}
               </div>
@@ -77,7 +77,7 @@ const Navbar = () => {
           </div>
         )}
         <Search
-          className="absolute right-3 top-1/2 -translate-y-1/2 text-stone-900"
+          className="absolute right-3 top-1/2 -translate-y-1/2 text-stone-900  dark:text-white" 
           size={18}
           onClick={handleSubmit}
         />

@@ -29,7 +29,7 @@ export default async function ShopPage() {
 
   return (
     <div className="px-4 pt-8">
-      <h2 className="text-3xl font-bold text-center mb-6 text-stone-800">
+      <h2 className="text-3xl font-bold text-center mb-6 text-stone-800 dark:text-white">
         Shop Our Products
       </h2>
 
