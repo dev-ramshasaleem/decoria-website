@@ -95,7 +95,7 @@ export default async function ShopPage() {
           const isAdd = cartItems.some((item) => item.productId === product.id);
           return (
             <div key={product.id} className="border p-3 rounded-lg">
-              <div className="w-full h-[220px] flex items-center justify-center bg-gray-50 rounded overflow-hidden">
+              <div className="w-full h-220px flex items-center justify-center bg-gray-50 rounded overflow-hidden">
                 <Image
                   src={product.imageUrl}
                   alt={product.name}
