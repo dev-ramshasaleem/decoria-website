@@ -1,6 +1,7 @@
 import { prisma } from "@/lib/prisma";
 import { auth } from "@clerk/nextjs/server";
 import { NextResponse } from "next/server";
+import { resend } from "@/lib/resend";
 
 export async function POST(req: Request) {
   const { userId } = await auth();
@@ -54,14 +55,73 @@ export async function POST(req: Request) {
 
     const order = await prisma.order.create({
       data: {
-        userId,
-        total,
         name,
-        email,
+        customerEmail: email,
         phone,
         address,
+        total,
+        status: "PENDING",
+
+        orderItems: {
+          create: cartItems.map((item) => ({
+            productId: item.productId,
+            quantity: item.quantity,
+            price: item.product.price,
+          })),
+        },
+      },
+
+      include: {
+        orderItems: {
+          include: {
+            product: true,
+          },
+        },
       },
     });
+
+
+    await resend.emails.send({
+  from: "orders@decoria-ruby.vercel.app",
+  to: process.env.ADMIN_EMAIL!,
+  subject: `🛒 New Order ${order.id}`,
+  html: `
+    <h2>New Order Received</h2>
+
+    <p><strong>Order ID:</strong> ${order.id}</p>
+        <p><strong>Customer:</strong> ${name}</p>
+        <p><strong>Email:</strong> ${email}</p>
+        <p><strong>Phone:</strong> ${phone}</p>
+        <p><strong>Total:</strong> $${order.total}</p>
+
+
+    <h3>Products</h3>
+
+    <ul>
+          ${order.orderItems
+            .map(
+              (item) =>
+                `<li>${item.product.name} × ${item.quantity}</li>`
+            )
+            .join("")}
+        </ul>
+  `,
+});
+
+await resend.emails.send({
+  from: "orders@decoria-ruby.vercel.app",
+  to: order.customerEmail,
+  subject: "Order Confirmation",
+  html: `
+    <h2>Thank you for your order!</h2>
+
+    <p>Your order has been received.</p>
+
+    <p><strong>Order ID:</strong> ${order.id}</p>
+
+    <p>Status: PENDING</p>
+  `,
+});
 
     await prisma.orderItem.createMany({
       data: cartItems.map((item) => ({
