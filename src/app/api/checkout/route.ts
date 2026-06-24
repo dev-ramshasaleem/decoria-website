@@ -24,7 +24,7 @@ export async function POST(req: Request) {
     );
   }
 
-  const { name, email, phone, address, paymenthMethod } = body || {};
+  const { name, email, phone, address, paymentMethod } = body || {};
 
   if (!name || !email || !phone || !address) {
     return NextResponse.json(
@@ -63,12 +63,12 @@ export async function POST(req: Request) {
         status: "PENDING",
 
         orderItems: {
-          create: cartItems.map((item) => ({
-            productId: item.productId,
-            quantity: item.quantity,
-            price: item.product.price,
-          })),
-        },
+  create: cartItems.map((item) => ({
+    productId: item.productId,
+    quantity: item.quantity,
+    price: item.product.price,
+  })),
+},
       },
 
       include: {
@@ -81,8 +81,8 @@ export async function POST(req: Request) {
     });
 
 
-    await resend.emails.send({
-  from: "orders@decoria-ruby.vercel.app",
+   const adminEmail = await resend.emails.send({
+    from: "onboarding@resend.dev",
   to: process.env.ADMIN_EMAIL!,
   subject: `🛒 New Order ${order.id}`,
   html: `
@@ -108,9 +108,9 @@ export async function POST(req: Request) {
   `,
 });
 
-await resend.emails.send({
-  from: "orders@decoria-ruby.vercel.app",
-  to: order.customerEmail,
+ const customerEmail = await resend.emails.send({
+    from: "onboarding@resend.dev",
+    to: order.customerEmail,
   subject: "Order Confirmation",
   html: `
     <h2>Thank you for your order!</h2>
@@ -123,14 +123,7 @@ await resend.emails.send({
   `,
 });
 
-    await prisma.orderItem.createMany({
-      data: cartItems.map((item) => ({
-        orderId: order.id,
-        productId: item.productId,
-        quantity: item.quantity,
-        price: item.product.price,
-      })),
-    });
+    
 
     await prisma.cartItem.deleteMany({
       where: { userId },
