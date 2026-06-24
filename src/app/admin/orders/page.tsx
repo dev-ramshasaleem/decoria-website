@@ -1,4 +1,5 @@
 import { prisma } from "@/lib/prisma";
+import OrderStatusSelect from "@/src/components/order-status-select";
 import { auth } from "@clerk/nextjs/server";
 
 export default async function OrdersPage() {
@@ -44,15 +45,22 @@ export default async function OrdersPage() {
             <td>{order.id}</td>
             <td>{order.customerEmail}</td>
             <td>${order.total}</td>
-            <td>{order.status}</td>
+            <td>
+        <OrderStatusSelect
+        orderId={order.id}
+        status={order.status}
+         />
+      </td>
             <td>
               {new Date(
                 order.createdAt
               ).toLocaleDateString()}
             </td>
           </tr>
+          
         ))}
       </tbody>
+      
       
     </table>
     
