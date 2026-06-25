@@ -35,7 +35,7 @@ const Navbar = () => {
     router.push(`/shop?search=${encodeURIComponent(query)}`);
   };
   return (
-    <header className=" top-0 left-0 right-0 flex items-center justify-between border-b dark:text-white text-stone-700  bg-white-500 border-stone-600 px-4 py-2">
+    <header className="top-0 left-0 right-0 flex items-center justify-between border-b px-4 py-2 bg-white dark:bg-black text-stone-700 dark:text-white border-stone-600">
       <Link href="/">
         <p className="text-3xl font-bold text-black-700">D E C O R I A</p>
       </Link>
@@ -54,13 +54,13 @@ const Navbar = () => {
               router.push(`/shop?search=${query}`);
               setSuggestions([]);
             }
+            
           }}
           placeholder="Search products..."
-          className="w-150 px-4 py-2 border border-black/50 text-black rounded-lg"
-        />
+className="w-150 px-4 py-2 rounded-lg border border-black/50 bg-white text-black dark:bg-zinc-900 dark:text-white dark:border-zinc-700"/>
 
         {suggestions.length > 0 && (
-          <div className="absolute z-50 mt-2 w-full bg-white border rounded-lg shadow-lg">
+          <div className="absolute z-50 mt-2 w-full bg-white dark:bg-zinc-900 border dark:border-zinc-700 rounded-lg shadow-lg">
             {suggestions.map((item) => (
               <div
                 key={item.id}
@@ -69,7 +69,7 @@ const Navbar = () => {
                   setQuery("");
                   setSuggestions([]);
                 }}
-                className="px-4 py-2 hover:bg-gray-100 cursor-pointer dark:text-white"
+                className="px-4 py-2 hover:bg-gray-100 cursor-pointer dark:text-white dark:hover:bg-zinc-500"
               >
                 {item.name}
               </div>
@@ -77,8 +77,8 @@ const Navbar = () => {
           </div>
         )}
         <Search
-          className="absolute right-3 top-1/2 -translate-y-1/2 text-stone-900  dark:text-white" 
-          size={18}
+className="absolute right-3 top-1/2 -translate-y-1/2 text-stone-900 dark:text-white"
+size={20}
           onClick={handleSubmit}
         />
       </div>
