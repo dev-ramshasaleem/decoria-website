@@ -29,7 +29,7 @@ export function CheckoutButton({ name, email, phone, address }: any) {
 
   return (
     <Link href="/checkout">
-      <Button onClick={checkout}>Place Order</Button>
+      <Button onClick={checkout} className="border-2 border-stone-800 dark:border-white text-stone-800 dark:text-white hover:bg-stone-800 hover:text-white dark:hover:bg-white dark:hover:text-stone-800 transition-colors duration-300">Place Order</Button>
     </Link>
   );
 }

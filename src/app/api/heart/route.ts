@@ -28,5 +28,9 @@ export async function POST(req: Request){
             userId, productId
         },
     })
+    
   return NextResponse.json({  isFavorite: true  });
+
+
+  
 } 

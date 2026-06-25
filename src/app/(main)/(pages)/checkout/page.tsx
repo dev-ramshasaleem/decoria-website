@@ -91,7 +91,7 @@ export default function CheckoutPge() {
         </p>
       </div>
 
-      <Button onClick={handleSubmit} className="w-full">
+      <Button onClick={handleSubmit} className="border-2 border-stone-800 dark:border-white text-stone-800 dark:text-white hover:bg-stone-800 hover:text-white dark:hover:bg-white dark:hover:text-stone-800 transition-colors duration-300">
         Confirm Order
       </Button>
     </div>
