@@ -26,8 +26,8 @@ export default async function HeartPage() {
       <div className="w-full max-w-2xl">
         {items.length === 0 ? (
           <div className="flex flex-col items-center justify-center py-16 text-center">
-            <h2 className="text-2xl font-semibold text-gray-800 mb-2">
-              You have no Favorite Items
+            <h2 className="text-2xl font-semibold text-gray-800 mb-2 dark:text-white">
+              You have no Favorite Items.
             </h2>
 
             <Button
@@ -41,7 +41,7 @@ export default async function HeartPage() {
           <div className="w-full">
             <div className="text-center mb-3">
               <h1 className="text-3xl font-bold text-black underline">
-                Your Favorite Items
+                Your Favorite Items!
               </h1>
             </div>
             <div className="space-y-4 w-full">

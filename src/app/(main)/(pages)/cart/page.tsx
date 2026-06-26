@@ -25,8 +25,8 @@ export default async function CartPage() {
     <div className="p-6 max-w-3xl mx-auto">
       {items.length === 0 ? (
         <div className="flex flex-col items-center justify-center py-16 text-center">
-          <h2 className="text-2xl font-semibold text-gray-800 mb-2">
-            Your cart is empty
+          <h2 className="text-2xl font-semibold text-gray-800 mb-4 dark:text-white">
+            Your cart is empty!
           </h2>
 
           <Button

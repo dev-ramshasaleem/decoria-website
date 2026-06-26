@@ -1,11 +1,12 @@
 "use client";
 import { Input } from "@/components/ui/input";
 import { UserButton, useUser } from "@clerk/nextjs";
-import { Search } from "lucide-react";
+import { Heart, Search, ShoppingCart } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import { Button } from "@/components/ui/button";
 
 const Navbar = () => {
   const router = useRouter();
@@ -91,12 +92,13 @@ size={20}
           </Link>
         )}
 
-        <Link href="/heart">
-          <Image src="/heart.png" width={30} height={30} alt="Search" />
-        </Link>
-        <Link href="/cart">
-          <Image src="/cartlogo.png" width={30} height={30} alt="Cart" />
-        </Link>
+        <Link href="/heart" className="text-foreground hover:text-primary">
+  <Heart className="h-8 w-8" />
+</Link>
+        
+        <Link href="/cart" className="text-foreground hover:text-primary">
+  <ShoppingCart className="h-8 w-8" />
+</Link>
       </div>
     </header>
   );
