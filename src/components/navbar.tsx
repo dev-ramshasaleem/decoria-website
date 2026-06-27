@@ -1,7 +1,7 @@
 "use client";
 import { Input } from "@/components/ui/input";
 import { UserButton, useUser } from "@clerk/nextjs";
-import { Heart, Search, ShoppingCart } from "lucide-react";
+import { Heart, Search, ShoppingCart, User } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
@@ -87,8 +87,8 @@ size={20}
         {isSignedIn ? (
           <UserButton />
         ) : (
-          <Link href="/sign-in">
-            <Image src="/profile.png" width={30} height={30} alt="Search" />
+          <Link href="/sign-in" className="text-foreground hover:text-primary">
+            <User className="h-8 w-8"/>
           </Link>
         )}
 
